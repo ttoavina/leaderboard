@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="./currency.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <input type="text" id="search" placeholder="Search">
+        <div class="leaderboard">
+            <div class="banner">
+              <img src="https://cdn.dribbble.com/users/320832/screenshots/5902856/layer-1.gif" alt="banner_image">
+          </div>
+            <div class="content">
+                <div class="tabs">
+                    <p class="tab_a">Last update: 16/12/2023</p>
+                </div>
+                <div id="root" class="week">
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const root = document.getElementById("root")
+    function generate(filter){
+        root.innerHTML = ''
+        data.filter((value) => value["name"].toUpperCase().includes(filter.toUpperCase())).forEach((value,index)=>{
+        let element = document.createElement('div')
+        element.classList.add("item_container")
+        element.innerHTML = `
+                  <div class="item">
+                     <div class="item_num">${index+1}</div>  
+                     <div class="item_img">
+                       <img src="${value['image']}" class="data_image" alt="winner_image" width="50" height="50">
+                  </div>
+                  <div class="item_info">
+                     <p>${value['name']}</p>
+                     <span>${value['price']} EUR</span>
+                  </div>
+                </div>
+        `
+        root.appendChild(element)
+    })
+
+}
+
+document.getElementById('search').onkeyup = ()=>{
+    console.log(document.getElementById('search').value)
+    generate(document.getElementById('search').value)
+}
+
+generate('')
+
+    
+</script>
+</html>
+
