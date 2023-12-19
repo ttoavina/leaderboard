@@ -1,3 +1,4 @@
+import datetime
 import requests
 import os
 from dotenv import load_dotenv
@@ -18,5 +19,10 @@ cleaned = list(map(currency_mapper,res))
 
 cleaned.sort(key=lambda x:x["price"],reverse=True)
 
+for i,value in enumerate(cleaned):
+    value["rank"] = i+1
+
+date_now = datetime.datetime.now().strftime("%d/%m/%Y, %Hh%M")
+
 with open("currency.js","w") as file:
-    file.write(f"const data={str(cleaned)}")
+    file.write(f"const data={str(cleaned)} \n const now = '{date_now}'")
