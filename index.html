@@ -15,7 +15,7 @@
           </div>
             <div class="content">
                 <div class="tabs">
-                    <p class="tab_a">Last update: 16/12/2023</p>
+                    <p class="tab_a" id="today"></p>
                 </div>
                 <div id="root" class="week">
                 </div>
@@ -33,7 +33,7 @@
         element.classList.add("item_container")
         element.innerHTML = `
                   <div class="item">
-                     <div class="item_num">${index+1}</div>  
+                     <div class="item_num">${value["rank"]}</div>  
                      <div class="item_img">
                        <img src="${value['image']}" class="data_image" alt="winner_image" width="50" height="50">
                   </div>
@@ -52,6 +52,8 @@ document.getElementById('search').onkeyup = ()=>{
     console.log(document.getElementById('search').value)
     generate(document.getElementById('search').value)
 }
+
+document.getElementById("today").innerText = `Last update: ${now}`
 
 generate('')
 
